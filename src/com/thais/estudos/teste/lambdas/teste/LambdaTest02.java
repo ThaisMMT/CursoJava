@@ -1,4 +1,4 @@
-package com.thais.estudos.teste.lambdas;
+package com.thais.estudos.teste.lambdas.teste;
 
 import java.util.ArrayList;
 import java.util.Collections;
