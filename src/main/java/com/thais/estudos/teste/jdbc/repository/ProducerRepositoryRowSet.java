@@ -4,7 +4,9 @@ import com.thais.estudos.teste.jdbc.conn.ConnectionFactory;
 import com.thais.estudos.teste.jdbc.dominio.Producer;
 import com.thais.estudos.teste.jdbc.listener.CustomRowSetListerner;
 
+import javax.sql.rowset.CachedRowSet;
 import javax.sql.rowset.JdbcRowSet;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +43,26 @@ public class ProducerRepositoryRowSet {
             if(!jrs.next()) return;
             jrs.updateString("name", producer.getName());
             jrs.updateRow();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public static void updateCacheRowSet(Producer producer) {
+        String sql = "SELECT * FROM producer WHERE ('id' = ?);";
+        try (CachedRowSet crs = ConnectionFactory.getCacheRowSet();
+             Connection connection = ConnectionFactory.getConnect()) {
+
+           connection.setAutoCommit(false);
+            crs.setCommand(sql);
+            crs.setInt(1, producer.getId());
+            crs.execute(connection);
+            if(!crs.next()) return;
+            crs.updateString("name", producer.getName());
+            crs.updateRow();
+            crs.acceptChanges();
 
         } catch (SQLException e) {
             e.printStackTrace();

@@ -1,5 +1,6 @@
 package com.thais.estudos.teste.jdbc.conn;
 
+import javax.sql.rowset.CachedRowSet;
 import javax.sql.rowset.JdbcRowSet;
 import javax.sql.rowset.RowSetProvider;
 import java.sql.Connection;
@@ -27,6 +28,18 @@ public class ConnectionFactory {
         jdbcRowSet.setPassword(password);
 
         return jdbcRowSet;
+    }
+
+    public  static CachedRowSet getCacheRowSet() throws SQLException {
+        String url = "jdbc:mysql://localhost:3307/anime_store";
+        String username = "root";
+        String password = "root";
+        CachedRowSet cachedRowSet = RowSetProvider.newFactory().createCachedRowSet();
+        cachedRowSet.setUrl(url);
+        cachedRowSet.setUsername(username);
+        cachedRowSet.setPassword(password);
+
+        return cachedRowSet;
     }
 
 
