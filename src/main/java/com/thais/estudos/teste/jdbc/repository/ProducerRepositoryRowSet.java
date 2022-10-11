@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class ProducerRepositoryRowSet {
     public static List<Producer> findByNameJdbcRowSet(String name) {
@@ -62,9 +63,10 @@ public class ProducerRepositoryRowSet {
             if(!crs.next()) return;
             crs.updateString("name", producer.getName());
             crs.updateRow();
+            TimeUnit.SECONDS.sleep(10);
             crs.acceptChanges();
 
-        } catch (SQLException e) {
+        } catch (SQLException | InterruptedException e) {
             e.printStackTrace();
         }
 
