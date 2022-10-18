@@ -3,10 +3,6 @@ package com.thais.estudos.teste.junit.dominio;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.security.PublicKey;
-
-import static org.junit.jupiter.api.Assertions.*;
-
 class DeveloperTest {
 
 
