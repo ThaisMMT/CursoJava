@@ -1,4 +1,4 @@
-package com.thais.estudos.teste.aprendendo;
+package com.thais.estudos.teste.Estudo_Inicio;
 
 public class ProfessorAluno {
     public static void main(String[] args) {
